@@ -280,8 +280,4 @@ public class SearchEngine {
             }
         }
     }
-
-    public void printPath(){
-
-    }
 }
