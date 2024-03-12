@@ -1,9 +1,11 @@
 package Engine.Data;
 
+import Engine.Data.Structure.Storage;
+
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-public class Queue<T>  {
+public class Queue<T> implements Storage<T> {
 
     private final ArrayList<T> list;
 
@@ -21,20 +23,6 @@ public class Queue<T>  {
     }
 
 
-    public boolean contains(T o) {
-        return list.contains(o);
-    }
-
-
-
-    public ListIterator<T> iterator() {
-        return list.listIterator();
-    }
-
-
-    public Object[] toArray() {
-        return list.toArray();
-    }
     public void add(T o) {
         list.add(o);
     }

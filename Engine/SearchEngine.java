@@ -4,18 +4,21 @@ import Engine.Data.Node;
 import Engine.Data.Structure.Action;
 import Engine.Data.Structure.Container;
 import Engine.Data.Queue;
+import Engine.Data.Structure.Storage;
 
 import java.util.ArrayList;
 
 public class SearchEngine {
     private final Container[][] board;
-    private final Queue<Node> frontier;
+    private final Storage<Node> frontier;
     private final ArrayList<Node> completed;
+    private int explored;
 
     public SearchEngine(Container[][]board){
         this.board = board;
         this.frontier = new Queue<>();
         this.completed = new ArrayList<>();
+        explored = 0;
     }
 
     public Container[][] start(){
@@ -25,7 +28,7 @@ public class SearchEngine {
         frontier.add(parent);
 
         while (true){
-
+            explored++;
             if(this.frontier.isEmpty()){
                 System.out.println("Sorry no solutions found...");
                 return null;
@@ -43,6 +46,7 @@ public class SearchEngine {
             Node trueSolution = this.getTrueSolution(possibleNodes);
 
             if(trueSolution!=null){
+                System.out.println("The number of nodes explored "+this.explored);
                 return trueSolution.getState();
             }
             if(possibleNodes!=null){
