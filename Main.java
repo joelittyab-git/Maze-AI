@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         Container arr[][] = {
-                {Container.WALL,Container.WALL,Container.WALL,Container.WALL},
+                {Container.VACANT,Container.VACANT,Container.VACANT,Container.VACANT},
                 {Container.POINTER,Container.WALL,Container.VACANT,Container.GOAL},
                 {Container.VACANT,Container.WALL,Container.VACANT,Container.WALL},
                 {Container.VACANT, Container.VACANT,Container.VACANT,Container.VACANT}

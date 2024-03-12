@@ -6,8 +6,6 @@ import Engine.Data.Structure.Container;
 import Engine.Data.Queue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class SearchEngine {
     private final Container[][] board;
@@ -21,15 +19,20 @@ public class SearchEngine {
     }
 
     public Container[][] start(){
-        Container[][] container = new Container[board.length][board[0].length];
 
-        Node currentNode = new Node(board, null, null);
-        frontier.add(currentNode);
+        //Parent node
+        Node parent = new Node(board, null, null);
+        frontier.add(parent);
+
         while (true){
+
+            if(this.frontier.isEmpty()){
+                System.out.println("Sorry no solutions found...");
+                return null;
+            }
+
             //Extracting the next node in the queue
             Node nodePointer = this.frontier.pop();
-
-            System.out.println("Node pointer"+nodePointer);
 
             //adding the node to the completed nodes
             this.completed.add(nodePointer);
@@ -45,8 +48,6 @@ public class SearchEngine {
             if(possibleNodes!=null){
                 this.frontier.add(possibleNodes);
             }
-
-
         }
     }
 
@@ -208,7 +209,7 @@ public class SearchEngine {
 
 
         if(pointerY-1 >= 0 &&
-                (state[pointerY-1][pointerX]==Container.VACANT) || state[pointerY-1][pointerX]==Container.GOAL)
+                (state[pointerY-1][pointerX]==Container.VACANT || state[pointerY-1][pointerX]==Container.GOAL))
         {       //Case up
             Container[][] newState1 = new Container[state.length][state[0].length];
             copyArray(state, newState1);
@@ -250,7 +251,6 @@ public class SearchEngine {
 
         for(int i = 0; i< initialSize; i++){
             futureNodes[i] = nodes.removeFirst();
-            System.out.println(futureNodes[i]);
         }
 
         return futureNodes;
@@ -279,5 +279,9 @@ public class SearchEngine {
                 }
             }
         }
+    }
+
+    public void printPath(){
+
     }
 }
